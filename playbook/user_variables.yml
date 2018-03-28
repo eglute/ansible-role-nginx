@@ -1,0 +1,2 @@
+#append in user_variables.yml:
+nginx_default_vhost_path: /etc/nginx/conf.d
