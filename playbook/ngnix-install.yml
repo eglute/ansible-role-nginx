@@ -1,0 +1,13 @@
+- name: Install ngnix
+  hosts: haproxy
+  gather_facts: "{{ gather_facts | default(True) }}"
+  max_fail_percentage: 20
+  user: root
+  pre_tasks:
+  roles:
+    - role: ngnix
+  post_tasks:
+  vars_files:
+    - vars/configs/haproxy_config.yml
+  tags:
+    - nginx
