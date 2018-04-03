@@ -83,19 +83,25 @@ nginx_upstreams: []
 #   }
 
 nginx_streams_filename: "streams.conf"
-nginx_streams: []
+#nginx_streams: []
+nginx_streams: 
+  - listen: "5354 udp"
+    proxy_pass: dns_servers
 # Example stream below.
 # - listen: "53 udp" # Required. Port or IP:PORT and protocol
 #   proxy_pass: dns_servers # Required. Destination server:port or upstream group.
 #   extra_parameters: "" # Can be used to add extra config blocks (multiline).
 
-nginx_stream_upstreams: []
+nginx_stream_upstreams: 
+  - name: dns_servers
+    servers: "{{ nginx_servers }}" 
+
 # - name: dns_servers
-#   servers: {
-#     "dns1.example.com",
-#     "dns2.example.com weight=3",
-#     "dns3.example.com"
-#   }
+#   servers: 
+#     - "dns1.example.com"
+#     - "dns2.example.com weight=3"
+#     - "dns3.example.com"
+#   
 #   extra_parameters: "" # Can be used to add extra config blocks (multiline).
 
 nginx_log_format: |
